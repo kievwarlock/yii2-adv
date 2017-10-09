@@ -39,6 +39,7 @@ class AdminController extends Controller
                     'logout' => ['post'],
                 ],
             ],
+
         ];
     }
 
@@ -71,7 +72,9 @@ class AdminController extends Controller
      */
     public function actionLogin()
     {
+        //$this->layout = '//main-login';
         if (!Yii::$app->user->isGuest) {
+
             return $this->goHome();
         }
 
@@ -79,6 +82,7 @@ class AdminController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
+
             return $this->render('login', [
                 'model' => $model,
             ]);
@@ -93,7 +97,6 @@ class AdminController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
 }

@@ -25,62 +25,94 @@
         </form>-->
         <!-- /.search form -->
 
-        <?= dmstr\widgets\Menu::widget(
-            [
-                'options' => ['class' => 'sidebar-menu'],
-                'items' => [
-                    ['label' => 'Admin panel', 'options' => ['class' => 'header']],
+        <?php
 
-                    ['label' => 'Categories', 'icon' => 'list', 'url' => ['/category'] ,
-                     'items' => [
+        if( Yii::$app->user->isGuest === true ){
 
-                         ['label' => 'All categories', 'icon' => 'dashboard', 'url' => ['/category'],],
-                         ['label' => 'Add category', 'icon' => 'plus', 'url' => ['/category/create'],],
-                     ],
+            echo dmstr\widgets\Menu::widget(
+                [
+                    'options' => ['class' => 'sidebar-menu'],
+                    'items' => [
 
-                    ],
+                        ['label' => 'Admin panel', 'options' => ['class' => 'header']],
 
-                    ['label' => 'Products', 'icon' => 'list', 'url' => ['/product'] ,
-                     'items' => [
 
-                         ['label' => 'All Products', 'icon' => 'dashboard', 'url' => ['/product'],],
-                         ['label' => 'Add Product', 'icon' => 'plus', 'url' => ['/product/create'],],
-                     ],
+                       ['label' => 'login', 'url' => ['admin/login'], 'visible' => Yii::$app->user->isGuest],
 
                     ],
+                ]
+            );
+        }else{
 
-                    ['label' => 'Users', 'icon' => 'file-code-o', 'url' => ['/user']],
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-                    [
-                        'label' => 'Same tools',
-                        'icon' => 'share',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
-                            [
-                                'label' => 'Level One',
-                                'icon' => 'circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+            echo dmstr\widgets\Menu::widget(
+                [
+                    'options' => ['class' => 'sidebar-menu'],
+                    'items' => [
+
+                        ['label' => 'Admin panel', 'options' => ['class' => 'header']],
+                        ['label' => 'Categories', 'icon' => 'list', 'url' => ['/category'] ,
+                         'items' => [
+
+                             ['label' => 'All categories', 'icon' => 'dashboard', 'url' => ['/category'],],
+                             ['label' => 'Add category', 'icon' => 'plus', 'url' => ['/category/create'],],
+                         ],
+
+                        ],
+
+                        ['label' => 'Products', 'icon' => 'list', 'url' => ['/product'] ,
+                         'items' => [
+
+                             ['label' => 'All Products', 'icon' => 'dashboard', 'url' => ['/product'],],
+                             ['label' => 'Add Product', 'icon' => 'plus', 'url' => ['/product/create'],],
+                         ],
+
+
+
+                        ],
+
+                        ['label' => 'Users', 'icon' => 'file-code-o', 'url' => ['/user']],
+                        ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+                        ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
+
+                        [
+                            'label' => 'Same tools',
+                            'icon' => 'share',
+                            'url' => '#',
+                            'items' => [
+                                ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
+                                ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
+                                [
+                                    'label' => 'Level One',
+                                    'icon' => 'circle-o',
+                                    'url' => '#',
+                                    'items' => [
+                                        ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
+                                        [
+                                            'label' => 'Level Two',
+                                            'icon' => 'circle-o',
+                                            'url' => '#',
+                                            'items' => [
+                                                ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+                                                ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+                                            ],
                                         ],
                                     ],
                                 ],
                             ],
                         ],
                     ],
-                ],
-            ]
+                ]
+            );
+        }
+
+
+        ?>
+        <?=
+
+            \yii\helpers\Html::a(
+            'Sign out',
+            ['/admin/logout'],
+            ['data-method' => 'post', 'class' => 'btn']
         ) ?>
 
     </section>

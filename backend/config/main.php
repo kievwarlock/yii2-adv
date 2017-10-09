@@ -35,6 +35,7 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => array('admin/login'),
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
@@ -65,4 +66,25 @@ return [
 
     ],
     'params' => $params,
+    'controllerMap' => [
+        'elfinder' => [
+            'class' => 'mihaildev\elfinder\PathController',
+            'access' => ['@'],
+            'root' => [
+                'baseUrl'=>'/backend/web/',
+                'basePath'=>'/backend/web/',
+                'path' => 'files/global',
+                'name' => 'Global'
+            ],
+           /* 'watermark' => [
+                'source'         => __DIR__.'/logo.png', // Path to Water mark image
+                'marginRight'    => 5,          // Margin right pixel
+                'marginBottom'   => 5,          // Margin bottom pixel
+                'quality'        => 95,         // JPEG image save quality
+                'transparency'   => 70,         // Water mark image transparency ( other than PNG )
+                'targetType'     => IMG_GIF|IMG_JPG|IMG_PNG|IMG_WBMP, // Target image formats ( bit-field )
+                'targetMinPixel' => 200         // Target image minimum pixel size
+            ]*/
+        ]
+    ],
 ];
