@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Category */
@@ -30,7 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name:ntext',
-            'parent',
+            //'parent',
+            [
+                'attribute' => 'parent',
+                'value' => function($data){
+                    $category_name =  Category::find()->where( ['parent' => $data->id ] )->asArray()->one();
+                    return $category_name['name'] ? $category_name['name'] : 'Пусто' ;
+                },
+            ],
             'description:ntext',
             'meta_title:ntext',
             'meta_description:ntext',

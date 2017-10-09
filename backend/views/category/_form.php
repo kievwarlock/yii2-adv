@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Category */
@@ -14,7 +16,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput() ?>
 
-    <?= $form->field($model, 'parent')->textInput() ?>
+    <?php //$form->field($model, 'parent')->textInput() ?>
+
+    <?php
+
+    $categories = Category::find()->all();
+    $items = ArrayHelper::map($categories,'id','name');
+    $params = [
+        'prompt' => 'Укажите категорию'
+    ];
+    echo $form->field($model, 'parent')->dropDownList($items,$params);
+    ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 

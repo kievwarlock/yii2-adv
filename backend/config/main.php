@@ -71,9 +71,9 @@ return [
             'class' => 'mihaildev\elfinder\PathController',
             'access' => ['@'],
             'root' => [
-                'baseUrl'=>'/backend/web/',
-                'basePath'=>'/backend/web/',
-                'path' => 'files/global',
+                'baseUrl'=>'/backend/web',
+                //'basePath'=>'/backend/web',
+                'path' => 'upload/global',
                 'name' => 'Global'
             ],
            /* 'watermark' => [

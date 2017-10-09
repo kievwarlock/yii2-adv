@@ -7,7 +7,7 @@ use mihaildev\elfinder\ElFinder;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use mihaildev\elfinder\InputFile;
-use yii\web\JsExpression;
+mihaildev\elfinder\Assets::noConflict($this);
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Product */
@@ -30,6 +30,7 @@ use yii\web\JsExpression;
     echo $form->field($model, 'category_id')->dropDownList($items,$params);
     ?>
 
+
     <?=
 
     $form->field($model, 'description')->widget(CKEditor::className(), [
@@ -38,7 +39,6 @@ use yii\web\JsExpression;
 
 
     ?>
-
 
 
     <?= $form->field($model, 'price')->textInput() ?>

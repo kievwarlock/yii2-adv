@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use app\models\Product;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
@@ -21,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     //dvar_dump($dataProvider);
     ?>
+    <div class="table-responsive">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -35,14 +35,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->category->name ? $data->category->name : 'Пусто' ;
                 },
             ],
-            [
+           /* [
                 'attribute' => 'description',
-
-            ],
-           //'description::ntext',
+                'format' => 'html',
+                'contentOptions' =>['style'=>'white-space: initial;'],
+            ],*/
+           //'description:ntext',
 
             'price',
-            'image',
+            //'image',
+            [
+                'attribute' => 'image',
+                'format' => 'html',
+                'value' => function ($data) {
+                    return Html::img( $data['image'],
+                        ['width' => '100px']);
+                },
+            ],
             // 'meta_title',
             // 'meta_description',
             // 'sale',
@@ -50,4 +59,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    </div>
 </div>

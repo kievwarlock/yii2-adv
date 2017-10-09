@@ -29,7 +29,7 @@ class CategoryController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => [ 'update', 'delete' , 'create' , 'view', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

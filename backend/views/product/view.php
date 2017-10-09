@@ -37,11 +37,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->category->name ? $data->category->name : 'Пусто' ;
                 },
             ],
-            'description',
+            'description:html',
             'price',
             'meta_title',
             'meta_description',
-            'image',
+            //'image',
+            [
+                'attribute' => 'image',
+                'format' => 'html',
+                'value' => function ($data) {
+                    return Html::img( $data['image'],
+                        ['width' => '100px']);
+                },
+            ],
            // 'sale',
             [
                 'attribute' => 'sale',

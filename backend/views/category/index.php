@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -23,7 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'name:ntext',
-            'parent',
+           // 'parent',
+
+            [
+                'attribute' => 'parent',
+                'value' => function($data){
+                    $category_name =  Category::find()->where( ['parent' => $data->id ] )->asArray()->one();
+                    return $category_name['name'] ? $category_name['name'] : 'Пусто' ;
+                },
+            ],
             'description:ntext',
             'meta_title:ntext',
             // 'meta_description:ntext',
